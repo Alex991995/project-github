@@ -13,7 +13,7 @@ function App() {
       <Header/>
       <div className="container mx-auto">
         <Routes>
-          <Route index element={<Home/>}/>
+          <Route path="/" element={<Home/>}/>
           <Route path="/favorites" element={<Favorites />}/>
           <Route path=":login/" element={<User user={user}/>}/>
           <Route path=":login/repos" element={<Repositories/>}/>

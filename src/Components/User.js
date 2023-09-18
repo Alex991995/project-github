@@ -8,6 +8,7 @@ function User({user}) {
   const favorites = useSelector((state) => state.user.favorites)
   const dispatch = useDispatch()
   const [ choose, setChoose ] = useState(false)
+  
 
   useEffect( ()=>{
     favorites.forEach(element => {
