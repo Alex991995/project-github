@@ -1,12 +1,19 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { removeFavoritesUser } from "../features/userSlice/userSlice";
 
 function Favorites() {
   const dispatch = useDispatch()
   const favorites = useSelector((state) => state.user.favorites)
+  const [loading, setLoading] = useState(true)
+
+  useEffect( ()=>{
+    if(favorites)setLoading(false)
+  },[favorites])
 
   return (
+    <>
+    {loading ? <p className="absolute top-2/4 right-2/4">loading...</p> : 
     <section className="Favorites">
       <ul className="flex items-center flex-col space-y-4 mt-9">
         {favorites?.map(users => (
@@ -24,7 +31,8 @@ function Favorites() {
           </li>
         ))}
       </ul>
-    </section>
+    </section>}
+    </>
   );
 }
 

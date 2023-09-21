@@ -5,15 +5,21 @@ import { useSelector } from "react-redux";
 
 function Repositories() {
   const user = useSelector((state) => state.user.user)
-  const [repos, setRepos] = useState([])
+  const [repos, setRepos] = useState(null)
+  const [loading, setLoading] = useState(true)
 
   useEffect( ()=> {
     fetch(user.repos_url)
       .then(res => res.json())
       .then(data =>setRepos(data))
   },[user])
-  console.log(repos)
+
+  useEffect( ()=>{
+    if(repos)setLoading(false)
+  },[repos])
   return (
+    <>
+    {loading ? <p className="absolute top-2/4 right-2/4">loading...</p> :
     <section>
         <ul className="grid sm:grid-cols-2 gap-4 justify-center m-4 md:grid-cols-3">
         {repos?.map(item => (
@@ -25,7 +31,8 @@ function Repositories() {
           </li>
         ))}
         </ul>
-    </section>
+    </section>}
+    </>
   );
 }
 

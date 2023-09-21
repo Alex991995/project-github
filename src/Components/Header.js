@@ -2,7 +2,6 @@ import React from 'react';
 import {NavLink } from 'react-router-dom'
 
 function Header() {
-
   function setActive({isActive}) {
   return  isActive ? "text-yellow-300 " : '';
 }

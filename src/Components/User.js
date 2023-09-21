@@ -8,7 +8,6 @@ function User({user}) {
   const favorites = useSelector((state) => state.user.favorites)
   const dispatch = useDispatch()
   const [ choose, setChoose ] = useState(false)
-  const [ loading, setLoading] = useState(true)
 
   useEffect( ()=>{
     favorites.forEach(element => {
@@ -18,16 +17,8 @@ function User({user}) {
     });
   },[choose, favorites, user])
 
-  useEffect( ()=>{
-    if(user) setLoading(false)
-
-  },[user])
-  console.log(loading)
   return (
-  <>
-    {loading && 
-    <p className="">Loading...</p>}
-    
+  <>    
     {user && 
     <section className="User flex flex-col items-center mb-4 ">
     <div className="relative max-w-full">
